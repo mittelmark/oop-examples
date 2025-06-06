@@ -4,22 +4,24 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Typedef for read function pointer - methods of our object
+// Typedef for function pointers - methods of our object
 typedef void (*read_func)(void* self);
 typedef void (*eat_func)(void* self,float amount);
 typedef void (*run_func)(void* self,float distance);
 // Animal struct definition
 struct Animal {
+    // properties
     char* species;
     int age;
     char* name;
     float weight;
+    // methods
     read_func read;
     eat_func eat;    
     run_func run;
 } ;
 
-// Read method implementation
+// Method implementations
 void animal_read(void* self) {
     struct Animal* animal = (struct Animal*)self;
     printf("Species: %s\nAge: %d\nName: %s\n", 
@@ -59,6 +61,8 @@ void Animal_delete(struct Animal** obj) {
     free(*obj);
     *obj = NULL;
 }
+
+// using macros for simplfied object creation and destruction
 #define ANIMAL(x,species,age,name,weight) struct Animal* x = Animal_new(species,age,name,weight);
 #define DELETE(x)     Animal_delete(&x);
 // Usage example
