@@ -46,14 +46,7 @@ struct Student {
 void Student_learn (struct Student* self) {
     self->kn = self->kn+1;
 }
-struct NAME {
-    //public properties
-    int x;
-    //methods
-    int (*getX)(struct NAME* self);
-    // private vars
-    int _h;
-};
+
 struct Student Student_new (int age, int kn) {
     // no student should have the same matrikel number
     static int matrikel = 799999;
